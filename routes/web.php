@@ -20,4 +20,7 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
+// INCLUDE ROUTES FROM PRODUCTS CONTROLLER
+Route::resource('products', 'ProductsController');
+
 // Route::get('/home', 'HomeController@index')->name('home');
