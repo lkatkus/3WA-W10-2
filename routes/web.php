@@ -16,11 +16,22 @@
 // });
 
 // ADDING A CONTROLLER TO ROUTE
-Route::get('/', 'HomeController@index');
+
+// PRODUCT ROUTE
+Route::get('/', 'ProductsController@index');
+
+Route::get('/products/create', 'ProductsController@create')->name('products.create');
+
+Route::post('/products', 'ProductsController@store')->name('products.store');
+
+Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
+
+Route::get('/products/{id}/edit', 'ProductsController@edit')->name('products.edit');
+
+Route::put('/products/{id}', 'ProductsController@update')->name('products.update');
 
 Auth::routes();
 
 // INCLUDE ROUTES FROM PRODUCTS CONTROLLER
-Route::resource('products', 'ProductsController');
 
 // Route::get('/home', 'HomeController@index')->name('home');

@@ -5,7 +5,12 @@
 <div class="container">
     <div class="row py-3">
         <div class="col-12">
-            <form class="" action="index.html" method="post">
+            <form class="" action="{{ route('products.update',$product->id) }}" method="POST">
+
+                {{ csrf_field() }}
+
+                @method('PUT')
+
                 <div class="form-group row">
                     <label for="input-title" class="col-2 col-form-label">Title</label>
                     <div class="col-10">
@@ -30,29 +35,33 @@
                 <div class="form-group row">
                     <label for="input-category" class="col-2 col-form-label">Category</label>
                     <div class="col-10">
-                        <select class="form-control" id="exampleSelect1">
+                        <select class="form-control" id="input-category" name="category">
+
                             @foreach($categories as $category)
                                 @if ($category -> id == $product -> category)
-                                    <option selected>{{ $category -> id }}</option>
+                                    <option value="{{ $category -> id }}" selected>{{ $category -> title }}</option>
                                 @else
-                                    <option>{{ $category -> id }}</option>
+                                    <option value="{{ $category -> id }}">{{ $category -> title }}</option>
                                 @endif
                             @endforeach
+
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="input-category" class="col-2 col-form-label">Manufacturer</label>
+                    <label for="input-manufacturer" class="col-2 col-form-label">Manufacturer</label>
                     <div class="col-10">
-                        <select class="form-control" id="exampleSelect1">
+                        <select class="form-control" id="input-manufacturer" name="manufacturer">
+
                             @foreach($manufacturers as $manufacturer)
                                 @if ($manufacturer -> id == $product -> manufacturer)
-                                    <option selected>{{ $manufacturer -> id }}</option>
+                                    <option value="{{ $manufacturer -> id }}" selected>{{ $manufacturer -> title }}</option>
                                 @else
-                                    <option>{{ $manufacturer -> id }}</option>
+                                    <option value="{{ $manufacturer -> id }}">{{ $manufacturer -> title }}</option>
                                 @endif
                             @endforeach
+
                         </select>
                     </div>
                 </div>
@@ -60,7 +69,7 @@
                 <div class="form-group row">
                     <label for="input-description" class="col-2 col-form-label">Description</label>
                     <div class="col-10">
-                        <textarea class="form-control" id="input-description" rows="3">{{$product->description}}</textarea>
+                        <textarea class="form-control" id="input-description" rows="3" name="description">{{$product->description}}</textarea>
                     </div>
                 </div>
 
