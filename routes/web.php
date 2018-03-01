@@ -18,7 +18,7 @@
 // ADDING A CONTROLLER TO ROUTE
 
 // PRODUCT ROUTE
-Route::get('/', 'ProductsController@index');
+Route::get('/', 'ProductsController@index')->name('home');
 
 Route::get('/products/create', 'ProductsController@create')->name('products.create');
 
@@ -30,8 +30,8 @@ Route::get('/products/{id}/edit', 'ProductsController@edit')->name('products.edi
 
 Route::put('/products/{id}', 'ProductsController@update')->name('products.update');
 
+Route::delete('/products/{id}', 'ProductsController@destroy')->name('products.destroy');
+
 Auth::routes();
 
 // INCLUDE ROUTES FROM PRODUCTS CONTROLLER
-
-// Route::get('/home', 'HomeController@index')->name('home');

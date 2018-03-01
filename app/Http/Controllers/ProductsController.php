@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
 
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     public function index()
     {
         $products = Product::all();
@@ -24,8 +29,10 @@ class ProductsController extends Controller
     }
 
     public function store(Request $request){
+        // VALIDATION
+            $this->valid($request);
         // CREATE NEW PRODUCT
-            $product = new Product();    
+            $product = new Product();
         // ADD DATA TO PRODUCT
             $product->title = $request->title;
             $product->price = $request->price;
@@ -47,6 +54,8 @@ class ProductsController extends Controller
     }
 
     public function update(Request $request){
+        // VALIDATION
+            $this->valid($request);
         // FIND EDITED PRODUCT
             $product = Product::find($request->id);
         // UPDATED PRODUCT DATA
@@ -59,7 +68,7 @@ class ProductsController extends Controller
         // SAVE UPDATED DATA
             $product->save();
         // REDIRECT
-            return redirect('/');
+            return redirect()->route('home');
     }
 
     public function show(Request $request){
@@ -69,8 +78,22 @@ class ProductsController extends Controller
     }
 
 
-    public function destroy($id){
-        echo 'derp';
+    public function destroy(Request $request){
+        $product = Product::find($request -> id);
+        $product -> delete();
+        return redirect('/');
     }
 
+    private function valid($request){
+        $request->validate([
+            'title' => 'required|alpha_num|max:255',
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'category' => 'required|numeric',
+            'manufacturer' => 'required|numeric',
+            'description' => 'required|max:1000'
+        ],[
+            'title.required' => 'Laukelis :attribute privalomas'
+        ]);
+    }
 }

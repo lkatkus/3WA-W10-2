@@ -60,18 +60,20 @@
             </div>
         </nav>
 
-
-        <div class="container">
-            <div class="row py-3">
-                <div class="col-12">
-                    <a href="{{ route('products.create') }}"><button type="button" class="btn btn-primary">Add New Products</button></a>
-                </div>
-            </div>
-        </div>
-
-
         <main>
+
+            @if ($user = Auth::user())
+                <div class="container">
+                    <div class="row py-3">
+                        <div class="col-12">
+                            <a href="{{ route('products.create') }}"><button type="button" class="btn btn-primary">Add New Products</button></a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
+
         </main>
     </div>
 
