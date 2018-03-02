@@ -17,23 +17,19 @@ class CategoryController extends Controller
         // $this->middleware('auth')->only('edit','destroy');
     }
 
-
     public function index()
     {
         $categories = Category::all();
         return view('categories.index',['categories'=>$categories]);
     }
 
-
     public function create()
     {
         return view('categories.create');
     }
 
-
     public function store(Request $request)
     {
-
         // VALIDATING REQUEST
             $this->valid($request);
 
@@ -46,7 +42,6 @@ class CategoryController extends Controller
 
         // REDIRECTING TO INDEX
             return redirect()->route('categories.index');
-
     }
 
     public function show(Category $category)
