@@ -16,10 +16,20 @@ class ProductsController extends Controller
     //     $this->middleware('auth');
     // }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('products.index', compact('products'));
+        if($request->has('category')){
+            $products = Product::where('category',$request->category)->get();
+        }elseif($request->has('manufacturer')){
+            $products = Product::where('manufacturer',$request->manufacturer)->get();
+        }else{
+            $products = Product::all();
+        }
+
+        $categories = Category::all();
+        $manufacturers = Manufacturer::all();
+        return view('products.index', compact('products','categories','manufacturers'));
+
     }
 
     public function create(){

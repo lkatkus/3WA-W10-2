@@ -19,18 +19,18 @@
         <li class="list-group-item">Manufacturer: - <span class="badge badge-default">{{ $product->manufacturers['title'] }}</span></li>
     </ul>
 
-    @if ($user = Auth::user())
-    <div class="card-block">
-        <a href="{{ route('products.edit', $product->id) }}">
-            <button class="btn btn-primary" type="button" name="button">Edit</button>
-        </a>
+    @if ($admin == TRUE)
+        <div class="card-block">
+            <a href="{{ route('products.edit', $product->id) }}">
+                <button class="btn btn-primary" type="button" name="button">Edit</button>
+            </a>
 
-        <form class="d-inline" action="{{ route('products.destroy', $product->id) }}" method="post">
-            @method('DELETE')
-            @csrf
-            <button class="btn btn-danger" type="submit" name="button">Delete</button>
-        </form>
-    </div>
+            <form class="d-inline" action="{{ route('products.destroy', $product->id) }}" method="post">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-danger" type="submit" name="button">Delete</button>
+            </form>
+        </div>
     @endif
 
 </div>
