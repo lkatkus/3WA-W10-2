@@ -62,15 +62,17 @@
 
         <main>
 
-            @if ($user = Auth::user())
+
                 <div class="container">
                     <div class="row py-3">
                         <div class="col-12">
-                            <a href="{{ route('products.create') }}"><button type="button" class="btn btn-primary">Add New Products</button></a>
+                            <a class="btn btn-secondary" href="{{ route('home') }}">Products</a>
+                            <a class="btn btn-warning" href="{{ route('categories.index') }}">Categories</a>
+                            <a class="btn btn-info" href="{{ route('manufacturers.index') }}">Manufacturers</a>
                         </div>
                     </div>
                 </div>
-            @endif
+
 
             @yield('content')
 

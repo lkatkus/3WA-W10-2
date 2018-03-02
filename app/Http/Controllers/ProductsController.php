@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Product;
 use App\Category;
 use App\Manufacturer;
@@ -14,6 +15,11 @@ class ProductsController extends Controller
     // public function __construct()
     // {
     //     $this->middleware('auth');
+    // }
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->except('');
     // }
 
     public function index(Request $request)
@@ -57,10 +63,10 @@ class ProductsController extends Controller
     }
 
     public function edit($id){
-        $product = Product::findOrFail($id);
-        $categories = Category::all();
-        $manufacturers = Manufacturer::all();
-        return view('products.update',compact('product','categories','manufacturers'));
+            $product = Product::findOrFail($id);
+            $categories = Category::all();
+            $manufacturers = Manufacturer::all();
+            return view('products.update',compact('product','categories','manufacturers'));
     }
 
     public function update(Request $request){
@@ -106,4 +112,5 @@ class ProductsController extends Controller
             'title.required' => 'Laukelis :attribute privalomas'
         ]);
     }
+
 }

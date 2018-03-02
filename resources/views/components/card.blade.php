@@ -19,7 +19,7 @@
         <li class="list-group-item">Manufacturer: - <span class="badge badge-default">{{ $product->manufacturers['title'] }}</span></li>
     </ul>
 
-    @if ($admin == TRUE)
+    @if ($admin == TRUE && Auth::user())
         <div class="card-block">
             <a href="{{ route('products.edit', $product->id) }}">
                 <button class="btn btn-primary" type="button" name="button">Edit</button>

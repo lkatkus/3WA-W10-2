@@ -20,18 +20,18 @@
 // PRODUCT ROUTE
 Route::get('/', 'ProductsController@index')->name('home');
 
-Route::get('/products/create', 'ProductsController@create')->name('products.create');
-
-Route::post('/products', 'ProductsController@store')->name('products.store');
-
+Route::get('/products/create', 'ProductsController@create')->name('products.create')->middleware('auth');
+Route::post('/products', 'ProductsController@store')->name('products.store')->middleware('auth');
 Route::get('/products/{id}', 'ProductsController@show')->name('products.show');
-
-Route::get('/products/{id}/edit', 'ProductsController@edit')->name('products.edit');
-
-Route::put('/products/{id}', 'ProductsController@update')->name('products.update');
-
-Route::delete('/products/{id}', 'ProductsController@destroy')->name('products.destroy');
-
+Route::get('/products/{id}/edit', 'ProductsController@edit')->name('products.edit')->middleware('auth');
+Route::put('/products/{id}', 'ProductsController@update')->name('products.update')->middleware('auth');
+Route::delete('/products/{id}', 'ProductsController@destroy')->name('products.destroy')->middleware('auth');
 Auth::routes();
 
 // INCLUDE ROUTES FROM PRODUCTS CONTROLLER
+
+// CREATES ROUTES BASED ON CategoryController
+Route::resource('/categories', 'CategoryController');
+
+// CREATES ROUTES BASED ON CategoryController
+Route::resource('/manufacturers', 'ManufacturersController');

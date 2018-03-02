@@ -2,10 +2,21 @@
 
 @section('content')
 
+    @if ($user = Auth::user())
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <a class="btn btn-primary" href="{{ route('products.create') }}">Add New Products</a>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="container">
 
         <!-- FILTERS -->
-        <div class="row">
+        <div class="row py-3">
             <div class="col-12">
 
                 <!-- CATEGORY FILTER -->
